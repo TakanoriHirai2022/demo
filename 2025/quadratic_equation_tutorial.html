@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+        <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--2次方程式について分かりやすいHTML教材を作成いたします。インタラクティブな要素も含めて、学習しやすい形にします。2次方程式の学習教材を作成いたしました。この教材には以下の特徴があります：
+        
+        **主な機能:**
+        - 2次方程式の基本概念から解の公式まで体系的に学習できる構成
+        - インタラクティブな計算機で実際に係数を入力して解を求められる
+        - 2次関数のグラフが自動描画され、解とx軸との交点の関係が視覚的に理解できる
+        - 因数分解による解法も併せて紹介
+        - レスポンシブデザインでスマートフォンでも見やすい
+        
+        **学習内容:**
+        1. 2次方程式の定義と一般形
+        2. 解の公式と判別式
+        3. 具体的な解法例（ステップバイステップ）
+        4. 実際に計算できる計算機
+        5. グラフによる視覚的理解
+        6. 因数分解による解法
+        
+        **参考文献について:**
+        教材内に包括的な参考文献リストを含めました。高校数学の教科書から大学受験参考書、オンライン学習リソースまで幅広く網羅しています。特に：
+        
+        - 文部科学省検定済みの高校数学教科書
+        - 受験参考書（チャート式、基礎問題精講など）
+        - オンライン学習サイト（Khan Academy、Wolfram MathWorld）
+        - 数学検定の公式テキスト
+        
+        この教材は段階的に理解を深められるように設計されており、基礎から応用まで学習者のレベルに応じて活用できます。-->
+    <title>2次方程式 - わかりやすい学習教材</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-3px);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .formula {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #dee2e6;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .example {
+            background: linear-gradient(135deg, #e8f5e8, #f0f9f0);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .calculator {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #f39c12;
+        }
+        
+        .input-group {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        label {
+            font-weight: bold;
+            min-width: 60px;
+        }
+        
+        input[type="number"] {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+            font-weight: bold;
+        }
+        
+        .step {
+            background: rgba(155, 89, 182, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .references {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .references h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .references ul {
+            list-style: none;
+        }
+        
+        .references li {
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .references li:last-child {
+            border-bottom: none;
+        }
+        
+        .graph-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 2次方程式</h1>
+            <p class="subtitle">基礎から応用まで分かりやすく学ぼう</p>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2><span class="icon">📚</span>2次方程式とは</h2>
+                <p>2次方程式とは、未知数 x の2次式を0とおいた方程式のことです。一般的な形は次のように表されます：</p>
+                <div class="formula">
+                    <strong>ax² + bx + c = 0</strong><br>
+                    （a ≠ 0, a, b, c は定数）
+                </div>
+                <p>この式において：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>a</strong>：2次の係数（0でない）</li>
+                    <li><strong>b</strong>：1次の係数</li>
+                    <li><strong>c</strong>：定数項</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2><span class="icon">🔍</span>解の公式</h2>
+                <p>2次方程式 ax² + bx + c = 0 の解は、以下の公式で求めることができます：</p>
+                <div class="formula">
+                    <strong>x = (-b ± √(b² - 4ac)) / 2a</strong>
+                </div>
+                <p>この公式の中の <strong>b² - 4ac</strong> を<strong>判別式（discriminant）</strong>と呼び、解の性質を決定します：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>b² - 4ac > 0 ：異なる2つの実数解</li>
+                    <li>b² - 4ac = 0 ：重解（1つの実数解）</li>
+                    <li>b² - 4ac < 0 ：2つの複素数解</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2><span class="icon">💡</span>解法の例</h2>
+                <div class="example">
+                    <h4>例題：x² - 5x + 6 = 0 を解いてみましょう</h4>
+                    <div class="step">
+                        <strong>Step 1:</strong> 係数を確認<br>
+                        a = 1, b = -5, c = 6
+                    </div>
+                    <div class="step">
+                        <strong>Step 2:</strong> 判別式を計算<br>
+                        b² - 4ac = (-5)² - 4(1)(6) = 25 - 24 = 1 > 0<br>
+                        → 異なる2つの実数解があります
+                    </div>
+                    <div class="step">
+                        <strong>Step 3:</strong> 解の公式を適用<br>
+                        x = (5 ± √1) / 2 = (5 ± 1) / 2<br>
+                        x = 3 または x = 2
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="icon">🧮</span>2次方程式計算機</h2>
+                <div class="calculator">
+                    <p><strong>ax² + bx + c = 0 の形で係数を入力してください</strong></p>
+                    <div class="input-group">
+                        <label for="coeff-a">a =</label>
+                        <input type="number" id="coeff-a" value="1" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="coeff-b">b =</label>
+                        <input type="number" id="coeff-b" value="-5" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="coeff-c">c =</label>
+                        <input type="number" id="coeff-c" value="6" step="any">
+                    </div>
+                    <button onclick="solveQuadratic()">解を計算</button>
+                    <div id="calculation-result" class="result" style="display: none;"></div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="icon">📊</span>2次関数のグラフ</h2>
+                <p>2次方程式 ax² + bx + c = 0 の解は、2次関数 y = ax² + bx + c のグラフがx軸と交わる点のx座標になります。</p>
+                <div class="graph-container">
+                    <canvas id="graphCanvas" width="400" height="300" style="border: 1px solid #ddd; max-width: 100%;"></canvas>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                        グラフは上の計算機の係数に基づいて自動更新されます
+                    </p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="icon">🎯</span>因数分解による解法</h2>
+                <p>2次方程式は因数分解でも解くことができます。特に係数が整数の場合に有効です。</p>
+                <div class="example">
+                    <h4>例：x² - 5x + 6 = 0</h4>
+                    <div class="step">
+                        x² - 5x + 6 = (x - 2)(x - 3) = 0
+                    </div>
+                    <div class="step">
+                        したがって、x - 2 = 0 または x - 3 = 0<br>
+                        よって x = 2 または x = 3
+                    </div>
+                </div>
+            </div>
+            
+            <div class="references">
+                <h3>📖 参考文献</h3>
+                <ul>
+                    <li><strong>数学I教科書</strong> - 文部科学省検定済教科書（数研出版、東京書籍など各社）</li>
+                    <li><strong>「高校数学でわかる線形代数」</strong> 竹内淳著, 講談社ブルーバックス</li>
+                    <li><strong>「数学I・A基礎問題精講」</strong> 上園信武著, 旺文社</li>
+                    <li><strong>Khan Academy - Quadratic Equations</strong> - https://www.khanacademy.org/</li>
+                    <li><strong>「チャート式基礎からの数学I+A」</strong> 数研出版編集部, 数研出版</li>
+                    <li><strong>「数学検定公式テキスト」</strong> 日本数学検定協会</li>
+                    <li><strong>Wolfram MathWorld - Quadratic Equation</strong> - https://mathworld.wolfram.com/</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('coeff-a').value);
+            const b = parseFloat(document.getElementById('coeff-b').value);
+            const c = parseFloat(document.getElementById('coeff-c').value);
+            const resultDiv = document.getElementById('calculation-result');
+            
+            if (a === 0) {
+                resultDiv.innerHTML = '<strong>エラー:</strong> aは0でない値を入力してください。';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            const discriminant = b * b - 4 * a * c;
+            let result = `<strong>方程式:</strong> ${a}x² + ${b}x + ${c} = 0<br>`;
+            result += `<strong>判別式:</strong> b² - 4ac = ${discriminant}<br>`;
+            
+            if (discriminant > 0) {
+                const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                result += `<strong>解:</strong> x = ${x1.toFixed(4)} または x = ${x2.toFixed(4)}`;
+            } else if (discriminant === 0) {
+                const x = -b / (2 * a);
+                result += `<strong>解:</strong> x = ${x.toFixed(4)} (重解)`;
+            } else {
+                const realPart = -b / (2 * a);
+                const imagPart = Math.sqrt(-discriminant) / (2 * a);
+                result += `<strong>解:</strong> x = ${realPart.toFixed(4)} ± ${imagPart.toFixed(4)}i (複素数解)`;
+            }
+            
+            resultDiv.innerHTML = result;
+            resultDiv.style.display = 'block';
+            
+            drawGraph(a, b, c);
+        }
+        
+        function drawGraph(a, b, c) {
+            const canvas = document.getElementById('graphCanvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Set up coordinate system
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const scaleX = 30;
+            const scaleY = 30;
+            
+            // Draw axes
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, centerY);
+            ctx.lineTo(width, centerY);
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX, height);
+            ctx.stroke();
+            
+            // Draw parabola
+            ctx.strokeStyle = '#e74c3c';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            let firstPoint = true;
+            for (let pixelX = 0; pixelX < width; pixelX += 2) {
+                const x = (pixelX - centerX) / scaleX;
+                const y = a * x * x + b * x + c;
+                const pixelY = centerY - y * scaleY;
+                
+                if (pixelY >= 0 && pixelY <= height) {
+                    if (firstPoint) {
+                        ctx.moveTo(pixelX, pixelY);
+                        firstPoint = false;
+                    } else {
+                        ctx.lineTo(pixelX, pixelY);
+                    }
+                }
+            }
+            ctx.stroke();
+            
+            // Mark x-intercepts if they exist
+            const discriminant = b * b - 4 * a * c;
+            if (discriminant >= 0) {
+                ctx.fillStyle = '#3498db';
+                if (discriminant > 0) {
+                    const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                    const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                    const pixelX1 = centerX + x1 * scaleX;
+                    const pixelX2 = centerX + x2 * scaleX;
+                    if (pixelX1 >= 0 && pixelX1 <= width) {
+                        ctx.beginPath();
+                        ctx.arc(pixelX1, centerY, 4, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+                    if (pixelX2 >= 0 && pixelX2 <= width) {
+                        ctx.beginPath();
+                        ctx.arc(pixelX2, centerY, 4, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+                } else {
+                    const x = -b / (2 * a);
+                    const pixelX = centerX + x * scaleX;
+                    if (pixelX >= 0 && pixelX <= width) {
+                        ctx.beginPath();
+                        ctx.arc(pixelX, centerY, 4, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+        
+        // Initialize with default values
+        solveQuadratic();
+        
+        // Update graph when coefficients change
+        document.getElementById('coeff-a').addEventListener('input', function() {
+            const a = parseFloat(this.value);
+            if (a !== 0) solveQuadratic();
+        });
+        document.getElementById('coeff-b').addEventListener('input', solveQuadratic);
+        document.getElementById('coeff-c').addEventListener('input', solveQuadratic);
+    </script>
+</body>
+</html>
